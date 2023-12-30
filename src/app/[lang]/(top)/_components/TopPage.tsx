@@ -8,6 +8,7 @@ import { z } from 'zod'
 // ページ共通
 import { Languages, useTranslation } from '@/hooks/i18n'
 import { setMetadata } from '@/utils'
+import { LangLink } from '@/components'
 
 // ページ固有
 import { topTranslation as translation } from '../_translations'
@@ -87,6 +88,19 @@ export function TopPage({ lang }: Props) {
             {t('button')}
           </button>
         </div>
+        <h2 className='mt-5 mb-5 text-center'>Link Sample</h2>
+        <ul className='flex justify-center gap-4'>
+          <li>
+            <LangLink lang={lang} href='/hoge'>
+              Hoge Link &gt;
+            </LangLink>
+          </li>
+          <li>
+            <LangLink lang={lang} href='/huga'>
+              Huga Link &gt;
+            </LangLink>
+          </li>
+        </ul>
         <h2 className='mt-5 mb-5 text-center'>Form Sample</h2>
         <div className='flex-1'>
           <form
