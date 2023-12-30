@@ -13,7 +13,6 @@ import { setMetadata } from '@/utils'
 import { topTranslation as translation } from '../_translations'
 import type { Inputs } from '../_types'
 import { Input, Label, ErrorText } from '../_components/form'
-import { inputMaxLength } from '../_constants'
 
 export const generateMetadata = setMetadata(translation)
 
@@ -21,19 +20,30 @@ type Props = {
   lang: Languages
 }
 
+const inputLength = {
+  name: {
+    min: 1,
+    max: 20,
+  },
+  age: {
+    min: 1,
+    max: 99,
+  },
+}
+
 // zodでバリデート
 const inputSchema = (errors: string[]) =>
   z.object({
     name: z
       .string()
-      .min(inputMaxLength['name']['min'], errors[0])
-      .max(inputMaxLength['name']['max'], errors[0]),
+      .min(inputLength['name']['min'], errors[0])
+      .max(inputLength['name']['max'], errors[0]),
     age: z.string().refine((data) => {
       const parsedNumber = parseInt(data)
       return (
         !isNaN(parsedNumber) &&
-        parsedNumber >= inputMaxLength['age']['min'] &&
-        parsedNumber <= inputMaxLength['age']['max']
+        parsedNumber >= inputLength['age']['min'] &&
+        parsedNumber <= inputLength['age']['max']
       )
     }, errors[1]),
   })
@@ -50,12 +60,12 @@ export function TopPage({ lang }: Props) {
     resolver: zodResolver(
       inputSchema([
         t('validates.name', {
-          min: inputMaxLength['name']['min'],
-          max: inputMaxLength['name']['max'],
+          min: inputLength['name']['min'],
+          max: inputLength['name']['max'],
         }),
         t('validates.age', {
-          min: inputMaxLength['age']['min'],
-          max: inputMaxLength['age']['max'],
+          min: inputLength['age']['min'],
+          max: inputLength['age']['max'],
         }),
       ]),
     ),
