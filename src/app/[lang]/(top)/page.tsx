@@ -1,8 +1,8 @@
-import { TopPage } from '@/app/[lang]/_components/TopPage'
+import { TopPage } from './_components/TopPage'
 
 import { Languages } from '@/hooks/i18n'
 
-import { topTranslation as translation } from './_translations/top'
+import { topTranslation as translation } from './_translations'
 import { setMetadata } from '@/utils'
 
 export const generateMetadata = setMetadata(translation)

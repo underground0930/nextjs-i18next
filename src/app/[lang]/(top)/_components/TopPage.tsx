@@ -10,10 +10,10 @@ import { Languages, useTranslation } from '@/hooks/i18n'
 import { setMetadata } from '@/utils'
 
 // ページ固有
-import { topTranslation as translation } from '../_translations/top'
+import { topTranslation as translation } from '../_translations'
 import type { Inputs } from '../_types'
 import { Input, Label, ErrorText } from '../_components/form'
-import { maxLength } from '../_constants'
+import { inputMaxLength } from '../_constants'
 
 export const generateMetadata = setMetadata(translation)
 
@@ -26,14 +26,14 @@ const inputSchema = (errors: string[]) =>
   z.object({
     name: z
       .string()
-      .min(maxLength['name']['min'], errors[0])
-      .max(maxLength['name']['max'], errors[1]),
+      .min(inputMaxLength['name']['min'], errors[0])
+      .max(inputMaxLength['name']['max'], errors[0]),
     age: z.string().refine((data) => {
       const parsedNumber = parseInt(data)
       return (
         !isNaN(parsedNumber) &&
-        parsedNumber >= maxLength['age']['min'] &&
-        parsedNumber <= maxLength['age']['max']
+        parsedNumber >= inputMaxLength['age']['min'] &&
+        parsedNumber <= inputMaxLength['age']['max']
       )
     }, errors[1]),
   })
@@ -49,10 +49,13 @@ export function TopPage({ lang }: Props) {
   } = useForm<Inputs>({
     resolver: zodResolver(
       inputSchema([
-        t('validates.name', { min: maxLength['name']['min'], max: maxLength['name']['max'] }),
+        t('validates.name', {
+          min: inputMaxLength['name']['min'],
+          max: inputMaxLength['name']['max'],
+        }),
         t('validates.age', {
-          min: maxLength['age']['min'],
-          max: maxLength['age']['max'],
+          min: inputMaxLength['age']['min'],
+          max: inputMaxLength['age']['max'],
         }),
       ]),
     ),
@@ -60,6 +63,7 @@ export function TopPage({ lang }: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { name, age } = data
+    // submit処理
     console.log(name, age)
   }
 
@@ -69,12 +73,7 @@ export function TopPage({ lang }: Props) {
         <h1 className='mb-5'>{t('lead')}</h1>
         <h2 className='mb-5'>{t('count', { count })}</h2>
         <div className='border-2'>
-          <button
-            className='block w-full'
-            onClick={() => {
-              setCount((prev) => prev + 1)
-            }}
-          >
+          <button className='block w-full' onClick={() => setCount((prev) => prev + 1)}>
             {t('button')}
           </button>
         </div>
@@ -97,11 +96,9 @@ export function TopPage({ lang }: Props) {
               {errors.age?.message && <ErrorText error={errors.age.message} />}
             </div>
             <div className='flex justify-center'>
-              <div className='w-[100px]'>
-                <button className='w-full h-10 text-white bg-[#bbb]' type='submit'>
-                  {t('submit')}
-                </button>
-              </div>
+              <button className='w-[100px] h-10 text-white bg-[#bbb]' type='submit'>
+                {t('submit')}
+              </button>
             </div>
           </form>
         </div>

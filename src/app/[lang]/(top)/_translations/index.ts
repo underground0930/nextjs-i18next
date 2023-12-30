@@ -6,7 +6,7 @@ const texts = {
     },
     translation: {
       lead: '本文になります',
-      button: '追加ボタン',
+      button: 'カウント追加ボタン',
       count: 'カウント: {{count}}!',
       name: '名前',
       age: '年齢',
@@ -24,7 +24,7 @@ const texts = {
     },
     translation: {
       lead: 'This is lead',
-      button: 'Add Button',
+      button: 'Add Count Button',
       count: 'Count: {{count}}!',
       name: 'Name',
       age: 'Age',
