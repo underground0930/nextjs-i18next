@@ -4,14 +4,20 @@ const texts = {
       title: 'トップ',
       description: 'トップページです',
     },
-    translation: {},
+    translation: {
+      lead: '本文になります',
+      count: 'カウント: {{count}}!',
+    },
   },
   en: {
     meta: {
       title: 'Top',
       description: 'This is top page',
     },
-    translation: {},
+    translation: {
+      lead: 'This is lead',
+      count: 'Count: {{count}}!',
+    },
   },
 }
 

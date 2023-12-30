@@ -1,3 +1,5 @@
+import { TopPage } from '@/app/[lang]/_components/TopPage'
+
 import { Languages } from '@/hooks/i18n'
 
 import { topTranslation as translation } from '@/translations'
@@ -12,7 +14,5 @@ type Props = {
 }
 
 export default function Page({ params: { lang } }: Props) {
-  return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>{lang}</main>
-  )
+  return <TopPage lang={lang} />
 }
