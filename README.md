@@ -1,1 +1,1 @@
-# nextjs-i18next-zodResolver
+# nextjs-i18next-zod-resolver
