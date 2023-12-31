@@ -90,10 +90,7 @@ export function TopPage() {
         <h2 className='mt-5 mb-5 text-center'>Link Sample</h2>
         <ul className='flex justify-center gap-4'>
           <li>
-            <LangLink href='/hoge'>Hoge Link &gt;</LangLink>
-          </li>
-          <li>
-            <LangLink href='/huga'>Huga Link &gt;</LangLink>
+            <LangLink href='/detail'>Detail Link &gt;</LangLink>
           </li>
         </ul>
         <h2 className='mt-5 mb-5 text-center'>Form Sample</h2>
