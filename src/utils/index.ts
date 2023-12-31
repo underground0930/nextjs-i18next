@@ -1,1 +1,1 @@
-export * from "./setMetadata";
+export * from './setMetadata'
