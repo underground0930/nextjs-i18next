@@ -1,10 +1,8 @@
-'use client'
-
 import { Inter } from 'next/font/google'
 import '../globals.css'
 
 import type { Languages } from '@/hooks/i18n'
-import { LangContext } from '@/providers'
+import { LangProvider } from '@/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang={lang}>
       <body className={inter.className}>
-        <LangContext.Provider value={lang}>{children}</LangContext.Provider>
+        <LangProvider lang={lang}>{children}</LangProvider>
       </body>
     </html>
   )
