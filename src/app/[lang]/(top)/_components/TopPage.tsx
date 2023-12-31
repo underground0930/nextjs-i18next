@@ -16,8 +16,10 @@ import { topTranslation as translation } from '../_translations'
 import type { Inputs } from '../_types'
 import { Input, Label, ErrorText } from '../_components/form'
 
+// metaの設定
 export const generateMetadata = setMetadata(translation)
 
+// 入力の文字列の長さ
 const inputLength = {
   name: {
     min: 1,
@@ -72,8 +74,7 @@ export function TopPage() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { name, age } = data
-    // submit処理
-    console.log(name, age)
+    console.log(name, age) // submit処理
   }
 
   return (
