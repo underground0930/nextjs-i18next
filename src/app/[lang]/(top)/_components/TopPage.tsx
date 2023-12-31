@@ -6,7 +6,8 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 
 // ページ共通
-import { Languages, useTranslation } from '@/hooks/i18n'
+import { useTranslation } from '@/hooks/i18n'
+import { useLang } from '@/hooks/lang'
 import { setMetadata } from '@/utils'
 import { LangLink } from '@/components'
 
@@ -16,10 +17,6 @@ import type { Inputs } from '../_types'
 import { Input, Label, ErrorText } from '../_components/form'
 
 export const generateMetadata = setMetadata(translation)
-
-type Props = {
-  lang: Languages
-}
 
 const inputLength = {
   name: {
@@ -49,7 +46,8 @@ const inputSchema = (errors: string[]) =>
     }, errors[1]),
   })
 
-export function TopPage({ lang }: Props) {
+export function TopPage() {
+  const lang = useLang()
   const { t } = useTranslation({ lang, translation })
   const [count, setCount] = useState(0)
 
@@ -91,14 +89,10 @@ export function TopPage({ lang }: Props) {
         <h2 className='mt-5 mb-5 text-center'>Link Sample</h2>
         <ul className='flex justify-center gap-4'>
           <li>
-            <LangLink lang={lang} href='/hoge'>
-              Hoge Link &gt;
-            </LangLink>
+            <LangLink href='/hoge'>Hoge Link &gt;</LangLink>
           </li>
           <li>
-            <LangLink lang={lang} href='/huga'>
-              Huga Link &gt;
-            </LangLink>
+            <LangLink href='/huga'>Huga Link &gt;</LangLink>
           </li>
         </ul>
         <h2 className='mt-5 mb-5 text-center'>Form Sample</h2>

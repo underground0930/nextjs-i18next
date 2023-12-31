@@ -7,13 +7,6 @@ export const otherLanguages = ['en'] as const
 export const languages = [defaultLanguage, ...otherLanguages] as const
 export type Languages = (typeof languages)[number]
 
-export type TranslationCommonDef = {
-  [L in Languages]: {
-    translation: {
-      [key: string]: any
-    }
-  }
-}
 export type TranslationDef = {
   [L in Languages]: {
     meta: Metadata
@@ -28,7 +21,7 @@ export const useTranslation = ({
   translation,
 }: {
   lang: Languages
-  translation: TranslationDef | TranslationCommonDef
+  translation: TranslationDef
 }) => {
   const i18n = createInstance()
   void i18n.use(initReactI18next).init({
